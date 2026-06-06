@@ -2,7 +2,6 @@ asyncio==3.4.3
 blinker==1.9.0
 Brotli==1.1.0
 brotlipy==0.7.0
-certifi @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_5d968ni_yn/croot/certifi_1671487774636/work/certifi
 cffi @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_ab19r4bji3/croot/cffi_1670423206034/work
 chardet==5.2.0
 charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
