@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+const favorites = document.getElementById("favorites");
+const selected = new Set();
+
+const spacer = document.getElementById("favorites-spacer");
+
+function updateSpacer() {
+  spacer.style.height =
+    favorites.getBoundingClientRect().height + "px";
+}
+
+// keep spacer in sync with real size changes (images loading, wrapping)
+const resizeObserver = new ResizeObserver(updateSpacer);
+resizeObserver.observe(favorites);
+
+// initial sync
+updateSpacer();
+
+// handle window resize
+window.addEventListener("resize", updateSpacer);
+
+
+document.getElementById("gallery").addEventListener("click", (e) => {
+  if (e.target.tagName !== "IMG") return;
+
+  const img = e.target;
+  const src = img.src;
+
+const favImg = document.createElement("img");
+favImg.src = src;
+
+// optional: allow removing by clicking favorite
+favImg.addEventListener("click", () => {
+  favImg.remove();
+});
+
+favorites.appendChild(favImg);
+});
+});
+
+</script>
+</head>
+
+<body style="background-color: black;">
+    <div>
+    <div id="favorites" style="position: fixed; top: 0; left: 0; right: 0; background: black; border-style: solid; border-color:gray">    
+          
+</div>
+    <div><hr width=1200px color="gray" size="10"></div>  
+    </div>
+    <div id="favorites-spacer" style="height: 0; transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);"> 
+     
+</div>
+    <div>
+    
+    <div id="gallery" style="display: flex; flex-wrap: wrap; ">
+        
+        {% for image in images %}
+        <div style="margin: 0px;   padding: 0;">
+            <img src="{{ url_for('image', filename=image) }}" alt="{{ image }}" style="max-width: 60px; height: auto;" class="gallery-img">
+        </div>
+        {% endfor %}
+        
+    </div>
+    </div>
+</body>
+</html>
+
